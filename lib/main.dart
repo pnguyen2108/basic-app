@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import './question.dart';
-import './answer.dart';
+import 'package:get/get.dart';
+import 'package:my_first_app/assets/theme/dark_theme.dart';
+import 'package:my_first_app/assets/theme/light_theme.dart';
+import 'package:my_first_app/screens/home.dart';
+import 'package:my_first_app/screens/questions.dart';
+import 'package:my_first_app/stores/controller.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(const MaterialApp(home: MyApp()));
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -12,35 +16,27 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var _currentQuestionIndex = 0;
-
-  _answerQuestion() => {
-        setState(() {
-          if (_currentQuestionIndex < 1) {
-            _currentQuestionIndex++;
-          }
-        })
-      };
+  // final List<QuestionModel> _questions = [];
+  final _darkMode = Get.put(MainController()).darkMode.value;
 
   @override
-  Widget build(BuildContext context) {
-    final questions = [
-      'What \'s your favorite color', 
-      'What \'s your favorite animal'];
+  Widget build(BuildContext context) => GetMaterialApp(
+        theme: lightTheme,
+        darkTheme: darkTheme,
+        themeMode: _darkMode ? ThemeMode.dark : ThemeMode.light,
+        initialRoute: '/',
+        getPages: appRoutes(),
+      );
 
-    return MaterialApp(
-        home: Scaffold(
-      appBar: AppBar(
-        title: const Text('My First App'),
-        backgroundColor: Colors.pink,
-      ),
-      body: Column(
-        children: <Widget>[
-          QuestionWidget(questions[_currentQuestionIndex]),
-          ButtonWidget('Answer 1', _answerQuestion),
-          ButtonWidget('Answer 2', _answerQuestion),
-        ],
-      ),
-    ));
-  }
+  appRoutes() => [
+        GetPage(
+          name: '/',
+          page: () => const HomeScreen(),
+          transition: Transition.rightToLeftWithFade,
+        ),
+        GetPage(
+            name: '/questions',
+            page: () => const QuestionListPage([]),
+            transition: Transition.rightToLeftWithFade)
+      ];
 }

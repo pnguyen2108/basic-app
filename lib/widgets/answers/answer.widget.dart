@@ -11,6 +11,7 @@ class AnswerWidget extends StatelessWidget {
     return Container(
         width: double.infinity,
         margin: const EdgeInsets.symmetric(horizontal: 50),
+      
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(backgroundColor: Colors.pink, foregroundColor: Colors.white70),
           onPressed: () => _onPressed(_buttonLabel),

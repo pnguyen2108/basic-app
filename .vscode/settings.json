@@ -1,8 +1,11 @@
 {
-    "dart.lineLength": 150,
+    "dart.lineLength": 80,
     "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.selectionHighlight": true,
+        "editor.formatOnType": true,
         "editor.rulers": [
-            150
+            80
         ],
     }
 }
