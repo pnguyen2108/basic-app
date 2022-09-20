@@ -19,8 +19,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final darkMode = Get.put(MainController()).darkMode.value;
-    final toggleDarkMode = Get.put(MainController()).toggleDarkMode;
+    final storeController = Get.find<MainController>();
 
     return Scaffold(
         body: AppBar(
@@ -38,7 +37,6 @@ class _AppBarWidgetState extends State<AppBarWidget> {
         },
       ),
       actions: [
-        Switch(value: darkMode, onChanged: ((value) => toggleDarkMode(value))),
         IconButton(
             onPressed: onToggleSettings, icon: const Icon(Icons.settings))
       ],

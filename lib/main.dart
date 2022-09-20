@@ -17,13 +17,13 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // final List<QuestionModel> _questions = [];
-  final _darkMode = Get.put(MainController()).darkMode.value;
+  final storeController = Get.put(MainController());
 
   @override
   Widget build(BuildContext context) => GetMaterialApp(
         theme: lightTheme,
         darkTheme: darkTheme,
-        themeMode: _darkMode ? ThemeMode.dark : ThemeMode.light,
+        themeMode: ThemeMode.system,
         initialRoute: '/',
         getPages: appRoutes(),
       );
