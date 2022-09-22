@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:my_first_app/stores/controller.dart';
+import 'package:my_first_app/widgets/layouts/app_bar.widget.dart';
+import 'package:my_first_app/widgets/layouts/bottom_navbar.widget.dart';
+import 'package:my_first_app/widgets/layouts/drawer.widget.dart';
+
+class ResultWidget extends StatelessWidget {
+  const ResultWidget({super.key});
+
+  onClickRetry() => Get.toNamed('/questions');
+
+  onClickBackHome() => Get.toNamed('/');
+
+  @override
+  Widget build(BuildContext context) {
+    var score = Get.put(MainController()).score;
+    return Scaffold(
+        appBar: const AppBarWidget(),
+        endDrawer: const DrawerWidget(),
+        bottomNavigationBar: const BottomNavBarWidget(),
+        body: Center(
+            child: Column(children: [
+          Text('Your score is : $score '),
+          const Text('Do you want to try again ?'),
+          ElevatedButton(onPressed: onClickRetry, child: const Text('Retry')),
+          ElevatedButton(
+              onPressed: onClickBackHome, child: const Text('Back to Home'))
+        ])));
+  }
+}
