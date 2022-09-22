@@ -19,13 +19,39 @@ class ResultWidget extends StatelessWidget {
         appBar: const AppBarWidget(),
         endDrawer: const DrawerWidget(),
         bottomNavigationBar: const BottomNavBarWidget(),
-        body: Center(
-            child: Column(children: [
-          Text('Your score is : $score '),
-          const Text('Do you want to try again ?'),
-          ElevatedButton(onPressed: onClickRetry, child: const Text('Retry')),
-          ElevatedButton(
-              onPressed: onClickBackHome, child: const Text('Back to Home'))
-        ])));
+        body: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 50),
+            alignment: Alignment.center,
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Text(
+                'SCORE',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline5!
+                    .copyWith(fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                '$score',
+                style: Theme.of(context).textTheme.headline2,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 70),
+              const Text('Do you want to try again ?'),
+              const SizedBox(height: 20),
+              Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 80),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        ElevatedButton(
+                            onPressed: onClickRetry,
+                            child: const Text('Retry')),
+                        ElevatedButton(
+                            onPressed: onClickBackHome,
+                            child: const Text('Home'))
+                      ]))
+            ])));
   }
 }

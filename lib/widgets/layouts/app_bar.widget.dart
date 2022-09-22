@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_first_app/stores/controller.dart';
 
 class AppBarWidget extends StatefulWidget implements PreferredSizeWidget {
   const AppBarWidget({super.key});
@@ -19,8 +18,6 @@ class _AppBarWidgetState extends State<AppBarWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final storeController = Get.find<MainController>();
-
     return Scaffold(
         body: AppBar(
       elevation: 0,

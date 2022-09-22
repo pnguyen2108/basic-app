@@ -7,8 +7,20 @@ final lightTheme = ThemeData(
     appBarTheme: AppBarTheme(
         backgroundColor: Colors.white, foregroundColor: Colors.pinkAccent[400]),
 
+    // bottom bar
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.pinkAccent[400]),
+
     // outline button
     outlinedButtonTheme: OutlinedButtonThemeData(
+        style: ButtonStyle(
+            backgroundColor:
+                MaterialStateProperty.all<Color>(Colors.pinkAccent[400]!),
+            foregroundColor: MaterialStateProperty.all<Color>(Colors.white))),
+
+    // elevated button
+    elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
             backgroundColor:
                 MaterialStateProperty.all<Color>(Colors.pinkAccent[400]!),
@@ -18,7 +30,7 @@ final lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
 
     // color scheme
-    colorScheme: ColorScheme.light(primary: Colors.pink[400]!),
+    colorScheme: ColorScheme.light(primary: Colors.pinkAccent[400]!),
 
     // icon
     iconTheme: const IconThemeData(color: Colors.black),
@@ -30,4 +42,5 @@ final lightTheme = ThemeData(
     textTheme: const TextTheme(
         bodyText2:
             TextStyle(color: Colors.grey, fontSize: 16, letterSpacing: 2),
+        headline2: TextStyle(color: Colors.black, letterSpacing: 5),
         headline5: TextStyle(color: Colors.black, letterSpacing: 5)));

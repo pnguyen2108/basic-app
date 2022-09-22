@@ -3,9 +3,9 @@ class QuestionModel {
 
   String? question;
 
-  List<String>? answers;
+  List? answers;
 
-  String? rightAnswer;
+  dynamic rightAnswer;
 
   QuestionModel({this.id, this.question, this.answers, this.rightAnswer});
 }

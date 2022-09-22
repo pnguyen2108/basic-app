@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
+import 'package:get/get.dart';
 import 'package:my_first_app/models/questions/question.model.dart';
+import 'package:my_first_app/stores/controller.dart';
 import 'package:my_first_app/widgets/answers/answer.widget.dart';
 import 'package:my_first_app/widgets/layouts/app_bar.widget.dart';
+import 'package:my_first_app/widgets/layouts/bottom_navbar.widget.dart';
 import 'package:my_first_app/widgets/layouts/drawer.widget.dart';
 import 'package:my_first_app/widgets/questions/question.widget.dart';
 import 'package:my_first_app/widgets/questions/question_list.widget.dart';
 
 class QuestionListPage extends StatefulWidget {
-  final List<QuestionModel>? _questions;
-
-  const QuestionListPage(this._questions, {super.key});
+  const QuestionListPage({super.key});
 
   @override
   State<QuestionListPage> createState() => _QuestionListPageState();
@@ -18,12 +19,14 @@ class QuestionListPage extends StatefulWidget {
 
 class _QuestionListPageState extends State<QuestionListPage> {
   QuestionModel? _currentQuestion;
-  List<QuestionModel>? _questions;
+  final questions = Get.put(MainController()).questions;
 
   @override
   void initState() {
     super.initState();
-    _questions = widget._questions;
+    if (questions.isNotEmpty) {
+      _currentQuestion = questions[0];
+    }
   }
 
   _answerQuestion(String answer) =>
@@ -31,8 +34,8 @@ class _QuestionListPageState extends State<QuestionListPage> {
 
   _changeQuestion(int questionId) => {
         setState(() {
-          if (widget._questions != null) {
-            _currentQuestion = _questions!
+          if (questions.isNotEmpty) {
+            _currentQuestion = questions
                 .singleWhereOrNull((element) => element.id == questionId);
           }
         })
@@ -43,17 +46,18 @@ class _QuestionListPageState extends State<QuestionListPage> {
     return Scaffold(
         endDrawer: const DrawerWidget(),
         appBar: const AppBarWidget(),
-        body: Column(children: <Widget>[
-          QuestionListWidget(_questions!, _changeQuestion),
-          QuestionWidget(_currentQuestion != null
-              ? _currentQuestion!.question!
-              : _questions!.isNotEmpty
-                  ? widget._questions![0].question as String
-                  : "Please Select a Question"),
-          if (_currentQuestion != null)
-            ...(_currentQuestion!.answers!)
-                .map((answer) => AnswerWidget(answer, _answerQuestion))
-                .toList()
-        ]));
+        bottomNavigationBar: const BottomNavBarWidget(),
+        body: questions.isNotEmpty
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                    QuestionWidget(_currentQuestion!.question!),
+                    if (_currentQuestion != null)
+                      ...(_currentQuestion!.answers!)
+                          .map(
+                              (answer) => AnswerWidget(answer, _answerQuestion))
+                          .toList()
+                  ])
+            : const Center(child: Text('No Question')));
   }
 }

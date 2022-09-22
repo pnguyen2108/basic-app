@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AnswerWidget extends StatelessWidget {
-  final String _buttonLabel;
+  final dynamic _buttonLabel;
   final Function _onPressed;
 
   const AnswerWidget(this._buttonLabel, this._onPressed, {super.key});
@@ -11,11 +11,10 @@ class AnswerWidget extends StatelessWidget {
     return Container(
         width: double.infinity,
         margin: const EdgeInsets.symmetric(horizontal: 50),
-      
         child: ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.pink, foregroundColor: Colors.white70),
-          onPressed: () => _onPressed(_buttonLabel),
-          child: Text(_buttonLabel),
-        ));
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.primary),
+            onPressed: () => _onPressed(_buttonLabel),
+            child: Text(_buttonLabel.toString())));
   }
 }
