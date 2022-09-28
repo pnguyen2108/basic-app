@@ -11,33 +11,29 @@ class BottomNavBarWidget extends StatefulWidget {
 
 class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
   var controller = Get.put(MainController());
-  int _currentIndex = 0;
 
-  void _onItemTapped(int index) {
-    if (index != _currentIndex) {
-      setState(() {
-        _currentIndex = index;
-      });
-
-      switch (index) {
-        case 0:
-          Get.toNamed('/questions');
-          break;
-        case 1:
-          break;
-        case 2:
-          if (controller.answeredQuestions.length <
-              controller.questions.length) {
-            Get.toNamed('/result');
-          } else {
-            Get.toNamed('/result');
-          }
-          break;
-        default:
-          break;
-      }
-    }
-  }
+  // void _onItemTapped(int index) {
+  //   switch (index) {
+  //     case 0:
+  //       controller.changeIdx(index);
+  //       Get.toNamed('/questions');
+  //       break;
+  //     case 1:
+  //       controller.changeIdx(index);
+  //       break;
+  //     case 2:
+  //       if (controller.answeredQuestions.length !=
+  //           controller.questions.length) {
+  //         Get.toNamed('/result');
+  //       } else {
+  //         controller.changeIdx(index);
+  //         Get.toNamed('/result');
+  //       }
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +65,8 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
             type: BottomNavigationBarType.fixed,
             showSelectedLabels: false,
             showUnselectedLabels: false,
-            currentIndex: _currentIndex,
-            onTap: _onItemTapped,
+            currentIndex: controller.currentIdx.value,
+            onTap: controller.changePage,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                   activeIcon: Icon(Icons.account_balance),

@@ -4,9 +4,11 @@ import 'package:my_first_app/assets/theme/light_theme.dart';
 import 'package:my_first_app/models/questions/question.model.dart';
 
 class MainController extends GetxController {
+  final pages = ['/questions', '/add', 'result'];
+  var currentIdx = 0.obs;
   var darkMode = false.obs;
-  var score = 0;
-  var answeredQuestions = [];
+  var score = 0.obs;
+  var answeredQuestions = [].obs;
   var questions = <QuestionModel>[
     QuestionModel(
         id: 1, question: '2 + 2 = ???', answers: [1, 2, 3, 4], rightAnswer: 2)
@@ -23,11 +25,16 @@ class MainController extends GetxController {
   }
 
   void addScore() {
-    score++;
+    score.value++;
   }
 
   void resetScore() {
-    score = 0;
-    answeredQuestions = [];
+    score.value = 0;
+    answeredQuestions.value = [];
+  }
+
+  void changePage(int nIdx) {
+    currentIdx.value = nIdx;
+    Get.toNamed(pages[nIdx]);
   }
 }

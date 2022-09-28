@@ -38,6 +38,13 @@ final lightTheme = ThemeData(
     //drawer
     drawerTheme: const DrawerThemeData(scrimColor: Color.fromRGBO(0, 0, 0, .3)),
 
+    //outline border
+    inputDecorationTheme: InputDecorationTheme(
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.pinkAccent[400]!)),
+        enabledBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.grey[600]!))),
+
     // text style
     textTheme: const TextTheme(
         bodyText2:

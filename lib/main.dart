@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:my_first_app/assets/theme/dark_theme.dart';
 import 'package:my_first_app/assets/theme/light_theme.dart';
 import 'package:my_first_app/models/questions/question.model.dart';
+import 'package:my_first_app/screens/add_question.dart';
 import 'package:my_first_app/screens/home.dart';
 import 'package:my_first_app/screens/questions.dart';
 import 'package:my_first_app/stores/controller.dart';
@@ -19,7 +20,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final List<QuestionModel> questions = [];
-  final storeController = Get.put(MainController());
 
   @override
   Widget build(BuildContext context) => GetMaterialApp(
@@ -39,6 +39,10 @@ class _MyAppState extends State<MyApp> {
         GetPage(
             name: '/questions',
             page: () => const QuestionListPage(),
+            transition: Transition.rightToLeftWithFade),
+        GetPage(
+            name: '/add',
+            page: () => const AddQuestionScreen(),
             transition: Transition.rightToLeftWithFade),
         GetPage(
             name: '/result',

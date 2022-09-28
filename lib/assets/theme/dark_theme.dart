@@ -39,6 +39,13 @@ final darkTheme = ThemeData(
     drawerTheme: const DrawerThemeData(
         scrimColor: Color.fromRGBO(255, 255, 255, .05), elevation: 1000),
 
+    //outline border
+    inputDecorationTheme: InputDecorationTheme(
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.pinkAccent[400]!)),
+        enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey[600]!))),
+
     // switch
     switchTheme: SwitchThemeData(
         overlayColor: MaterialStateProperty.all<Color>(Colors.blue),

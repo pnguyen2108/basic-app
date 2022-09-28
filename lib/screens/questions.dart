@@ -29,7 +29,7 @@ class _QuestionListPageState extends State<QuestionListPage> {
     }
   }
 
-  _answerQuestion(String answer) =>
+  _answerQuestion(dynamic answer) =>
       {if (_currentQuestion!.rightAnswer == answer) {}};
 
   _changeQuestion(int questionId) => {
